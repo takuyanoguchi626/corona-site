@@ -1,0 +1,16 @@
+.upper {
+  display: flex;
+  .left {
+    width: 45%;
+    .patientChart {
+      background-color: aqua;
+    }
+    .patientSentence {
+      background-color: chartreuse;
+    }
+  }
+  .right {
+    width: 55%;
+    background-color: darkorange;
+  }
+}

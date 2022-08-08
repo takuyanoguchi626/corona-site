@@ -34,4 +34,27 @@ body {
   font-weight: normal;
   margin: 5px 0;
 }
+
+#main .upper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#main .upper .left {
+  width: 45%;
+}
+
+#main .upper .left .patientChart {
+  background-color: aqua;
+}
+
+#main .upper .left .patientSentence {
+  background-color: chartreuse;
+}
+
+#main .upper .right {
+  width: 55%;
+  background-color: darkorange;
+}
 /*# sourceMappingURL=index.css.map */
