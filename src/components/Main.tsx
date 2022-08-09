@@ -21,13 +21,13 @@ export default function Main() {
       <div className="upper">
         <div className="left">
           <div className="patientChart">
-            <table border={1}>
+            <table className="chartTable">
               <tbody>
                 <tr>
                   <td>現在患者数/対策病床数</td>
                   <td>現在患者数</td>
                 </tr>
-                <tr>
+                <tr className="number">
                   <td>a</td>
                   <td>a</td>
                 </tr>
@@ -35,7 +35,7 @@ export default function Main() {
                   <td>累積退院者</td>
                   <td>死亡者</td>
                 </tr>
-                <tr>
+                <tr className="number">
                   <td>a</td>
                   <td>a</td>
                 </tr>
@@ -43,9 +43,10 @@ export default function Main() {
                   <td>対策病床数 115,400床</td>
                   <td>PCR検査陽性者数 14,055,302人</td>
                 </tr>
-                <tr>
+                <tr className="chartSentence">
                   <td colSpan={2}>
                     臨床工学技士 14,378人 / 人工呼吸器 28,197台 / ECMO 1,412台
+                    <br />
                     2020年2月回答 出典
                     <a href="https://ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/">
                       一般社団法人 日本呼吸療法医学会　公益社団法人

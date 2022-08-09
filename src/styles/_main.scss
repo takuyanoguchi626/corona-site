@@ -3,7 +3,29 @@
   .left {
     width: 45%;
     .patientChart {
-      background-color: aqua;
+      margin: 13px 0 0 6.5vw;
+      width: 37.2vw;
+      .chartTable {
+        text-align: center;
+        border-collapse: collapse;
+        border: 0.2rem solid $headerBackgroundColor;
+        td {
+          padding: 1px;
+          font-size: 1.2vw;
+          width: 20vw;
+          border: 0.2rem solid $headerBackgroundColor;
+        }
+        .number {
+          color: white;
+          height: 8.5vh;
+          background-color: $headerBackgroundColor;
+        }
+        .chartSentence {
+          td {
+            font-size: 0.8vw;
+          }
+        }
+      }
     }
     .patientSentence {
       background-color: chartreuse;
@@ -11,9 +33,7 @@
   }
   .right {
     width: 55%;
-    background-color: darkorange;
     .prefectures {
-      background-color: aqua;
       margin: 0 10px;
       padding: 8px;
       width: 53vw;

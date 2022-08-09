@@ -8,7 +8,7 @@ body {
 }
 
 #header .container {
-  background-color: #ab2c2c;
+  background-color: #b52f2f;
   color: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -46,7 +46,31 @@ body {
 }
 
 #main .upper .left .patientChart {
-  background-color: aqua;
+  margin: 13px 0 0 6.5vw;
+  width: 37.2vw;
+}
+
+#main .upper .left .patientChart .chartTable {
+  text-align: center;
+  border-collapse: collapse;
+  border: 0.2rem solid #b52f2f;
+}
+
+#main .upper .left .patientChart .chartTable td {
+  padding: 1px;
+  font-size: 1.2vw;
+  width: 20vw;
+  border: 0.2rem solid #b52f2f;
+}
+
+#main .upper .left .patientChart .chartTable .number {
+  color: white;
+  height: 8.5vh;
+  background-color: #b52f2f;
+}
+
+#main .upper .left .patientChart .chartTable .chartSentence td {
+  font-size: 0.8vw;
 }
 
 #main .upper .left .patientSentence {
@@ -55,11 +79,9 @@ body {
 
 #main .upper .right {
   width: 55%;
-  background-color: darkorange;
 }
 
 #main .upper .right .prefectures {
-  background-color: aqua;
   margin: 0 10px;
   padding: 8px;
   width: 53vw;
