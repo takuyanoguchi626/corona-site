@@ -59,8 +59,8 @@ export default function Main() {
           </div>
           <div className="patientSentence">
             <p>
-              現在患者数 更新日: 2022-08-06 (速報 2022-08-07T20:00) 対策病床数
-              発表日: 2022-08-03
+              現在患者数 更新日: 2022-08-06 (速報 2022-08-07T20:00) <br />
+              対策病床数 発表日: 2022-08-03 <br />
               新型コロナ対策病床数は「感染症指定医療機関の指定状況」の下記合計と仮定
             </p>
             <div className="kindOfCorona">

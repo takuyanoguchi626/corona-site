@@ -1,5 +1,6 @@
 .upper {
   display: flex;
+  margin-top: 2px;
   .left {
     width: 45%;
     .patientChart {
@@ -28,7 +29,9 @@
       }
     }
     .patientSentence {
-      background-color: chartreuse;
+      margin: 0 0 0 6.5vw;
+      width: 37.2vw;
+      text-align: center;
     }
   }
   .right {

@@ -20,17 +20,18 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  height: 20vh;
 }
 
 #header .container h1 {
-  font-size: 50px;
+  font-size: 60px;
   font-weight: lighter;
-  margin: 12px 0;
+  margin: 12px 0 20px 0;
   letter-spacing: 1px;
 }
 
 #header .container h2 {
-  font-size: 17px;
+  font-size: 20px;
   font-weight: normal;
   margin: 5px 0;
 }
@@ -39,6 +40,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-top: 2px;
 }
 
 #main .upper .left {
@@ -74,7 +76,9 @@ body {
 }
 
 #main .upper .left .patientSentence {
-  background-color: chartreuse;
+  margin: 0 0 0 6.5vw;
+  width: 37.2vw;
+  text-align: center;
 }
 
 #main .upper .right {
@@ -95,7 +99,7 @@ body {
 #main .upper .right .prefectures .wholeCountry {
   width: 13.3vw;
   background-color: black;
-  height: 10vh;
+  height: 9.3vh;
   color: white;
   margin: 3px;
 }
@@ -103,7 +107,7 @@ body {
 #main .upper .right .prefectures .prefecture {
   width: 6.4vw;
   background-color: black;
-  height: 10vh;
+  height: 9.3vh;
   color: white;
   margin: 3px;
 }
