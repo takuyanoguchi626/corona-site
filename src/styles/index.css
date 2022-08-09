@@ -58,6 +58,34 @@ body {
   background-color: darkorange;
 }
 
+#main .upper .right .prefectures {
+  background-color: aqua;
+  margin: 0 10px;
+  padding: 8px;
+  width: 53vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#main .upper .right .prefectures .wholeCountry {
+  width: 13.3vw;
+  background-color: black;
+  height: 10vh;
+  color: white;
+  margin: 3px;
+}
+
+#main .upper .right .prefectures .prefecture {
+  width: 6.4vw;
+  background-color: black;
+  height: 10vh;
+  color: white;
+  margin: 3px;
+}
+
 #main .lower {
   background-color: darkcyan;
 }

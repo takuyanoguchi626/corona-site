@@ -1,0 +1,7 @@
+@mixin prefecture($width) {
+  width: $width;
+  background-color: black;
+  height: 10vh;
+  color: white;
+  margin: 3px;
+}
