@@ -1,5 +1,10 @@
+@import "mixin";
 @import "base";
 
 #header {
   @import "header";
+}
+
+#main {
+  @import "main";
 }

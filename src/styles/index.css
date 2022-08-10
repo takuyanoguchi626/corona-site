@@ -8,7 +8,7 @@ body {
 }
 
 #header .container {
-  background-color: #ab2c2c;
+  background-color: #b52f2f;
   color: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -20,18 +20,109 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  height: 20vh;
 }
 
 #header .container h1 {
-  font-size: 50px;
+  font-size: 60px;
   font-weight: lighter;
-  margin: 12px 0;
+  margin: 12px 0 20px 0;
   letter-spacing: 1px;
 }
 
 #header .container h2 {
-  font-size: 17px;
+  font-size: 20px;
   font-weight: normal;
   margin: 5px 0;
+}
+
+#main .upper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 2px;
+}
+
+#main .upper .left {
+  width: 47%;
+}
+
+#main .upper .left .patientChart {
+  margin: 13px 0 0 7vw;
+  width: 37.2vw;
+}
+
+#main .upper .left .patientChart .chartTable {
+  text-align: center;
+  border-collapse: collapse;
+  border: 0.2rem solid #b52f2f;
+}
+
+#main .upper .left .patientChart .chartTable td {
+  padding: 1px;
+  font-size: 1.2vw;
+  width: 20vw;
+  border: 0.2rem solid #b52f2f;
+}
+
+#main .upper .left .patientChart .chartTable .number {
+  color: white;
+  height: 8.5vh;
+  background-color: #b52f2f;
+}
+
+#main .upper .left .patientChart .chartTable .chartSentence td {
+  font-size: 0.8vw;
+}
+
+#main .upper .left .patientSentence {
+  margin: 0 0 0 7vw;
+  width: 37.2vw;
+  text-align: center;
+}
+
+#main .upper .right {
+  width: 53%;
+}
+
+#main .upper .right .prefectures {
+  padding: 8px 0;
+  width: 52vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#main .upper .right .prefectures .wholeCountry {
+  width: 13.3vw;
+  background-color: black;
+  height: 9.3vh;
+  color: white;
+  margin: 3px;
+  text-align: center;
+}
+
+#main .upper .right .prefectures .prefecture {
+  width: 6.4vw;
+  background-color: black;
+  height: 9.3vh;
+  color: white;
+  margin: 3px;
+  text-align: center;
+}
+
+#main .lower {
+  text-align: center;
+}
+
+#main .lower img {
+  width: 1vw;
+}
+
+#main .lower .down {
+  -webkit-transform: scale(1, -1);
+          transform: scale(1, -1);
 }
 /*# sourceMappingURL=index.css.map */

@@ -1,0 +1,61 @@
+.upper {
+  display: flex;
+  margin-top: 2px;
+  .left {
+    width: 47%;
+    .patientChart {
+      margin: 13px 0 0 7vw;
+      width: 37.2vw;
+      .chartTable {
+        text-align: center;
+        border-collapse: collapse;
+        border: 0.2rem solid $headerBackgroundColor;
+        td {
+          padding: 1px;
+          font-size: 1.2vw;
+          width: 20vw;
+          border: 0.2rem solid $headerBackgroundColor;
+        }
+        .number {
+          color: white;
+          height: 8.5vh;
+          background-color: $headerBackgroundColor;
+        }
+        .chartSentence {
+          td {
+            font-size: 0.8vw;
+          }
+        }
+      }
+    }
+    .patientSentence {
+      margin: 0 0 0 7vw;
+      width: 37.2vw;
+      text-align: center;
+    }
+  }
+  .right {
+    width: 53%;
+    .prefectures {
+      padding: 8px 0;
+      width: 52vw;
+      display: flex;
+      flex-wrap: wrap;
+      .wholeCountry {
+        @include prefecture(13.3vw);
+      }
+      .prefecture {
+        @include prefecture(6.4vw);
+      }
+    }
+  }
+}
+.lower {
+  text-align: center;
+  img {
+    width: 1vw;
+  }
+  .down {
+    transform: scale(1, -1);
+  }
+}
