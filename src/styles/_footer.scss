@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  margin: 30px 0;
+  .coronaExpertImg {
+    @include footerImg;
+  }
+  .healthImg {
+    display: flex;
+    border: solid thin;
+    @include footerImg;
+    .healthIcon {
+      width: 6vw;
+    }
+  }
+  .stayhomeImg {
+    @include footerImg;
+  }
+}
