@@ -2,19 +2,60 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 export default function Main() {
+  //都道府県別データ
   const [data, setData] = useState([]);
+  //全国患者数合計
+  const [totalPatient, setTotalPatient] = useState(0);
+  //全国対策病床合計
+  const [totalSickBed, setTotalSickBed] = useState(0);
+  //対策病床に対する患者数の割合
+  const [patientRatio, setPatientRatio] = useState(0);
+  //全国死亡者数
+  const [deaths, setDeaths] = useState(0);
+  //累計退院者数
+  const [exits, setExits] = useState(0);
+  //累計PCR陽性者数
+  const [patients, setPatients] = useState(0);
+  //
 
-  const axiosGet = async () => {
+  /**
+   * 都道府県別のコロナのデータを取得する.
+   */
+  const coronaData_prefectures = async () => {
     const res = await axios.get(
       "https://www.stopcovid19.jp/data/covid19japan_beds/latest.json"
     );
     setData(() => res.data);
+    let totalPatientData = 0;
+    let totalSickBedData = 0;
+    for (const prefecture of res.data) {
+      totalPatientData += Number(prefecture["PCR検査陽性者数"]);
+      totalSickBedData +=
+        Number(prefecture["入院患者受入確保病床"]) +
+        Number(prefecture["宿泊施設受入可能室数"]);
+    }
+    setTotalPatient(() => totalPatientData);
+    setTotalSickBed(() => totalSickBedData);
+    setPatientRatio(() =>
+      Math.floor((totalPatientData / totalSickBedData) * 100)
+    );
+  };
+  /**
+   * 全国のコロナのデータを取得する.
+   */
+  const coronaData_wholeCountry = async () => {
+    const res = await axios.get(
+      "https://www.stopcovid19.jp/data/covid19japan.json"
+    );
+    setDeaths(() => res.data.ndeaths);
+    setExits(() => res.data.nexits);
+    setPatients(() => res.data.npatients);
   };
 
   useEffect(() => {
-    axiosGet();
+    coronaData_prefectures();
+    coronaData_wholeCountry();
   }, []);
-  console.log(data);
 
   return (
     <div id="main">
@@ -28,20 +69,20 @@ export default function Main() {
                   <td>現在患者数</td>
                 </tr>
                 <tr className="number">
-                  <td>a</td>
-                  <td>a</td>
+                  <td>{patientRatio.toLocaleString()}%</td>
+                  <td>{totalPatient.toLocaleString()}人</td>
                 </tr>
                 <tr>
                   <td>累積退院者</td>
                   <td>死亡者</td>
                 </tr>
                 <tr className="number">
-                  <td>a</td>
-                  <td>a</td>
+                  <td>{exits.toLocaleString()}人</td>
+                  <td>{deaths.toLocaleString()}人</td>
                 </tr>
                 <tr>
-                  <td>対策病床数 115,400床</td>
-                  <td>PCR検査陽性者数 14,055,302人</td>
+                  <td>対策病床数 {totalSickBed.toLocaleString()}床</td>
+                  <td>PCR検査陽性者数 {patients.toLocaleString()}人</td>
                 </tr>
                 <tr className="chartSentence">
                   <td colSpan={2}>
@@ -106,11 +147,26 @@ export default function Main() {
         </div>
         <div className="right">
           <div className="prefectures">
-            <div className="wholeCountry">aaa</div>
-            {data.map((a, index) => {
+            <div className="wholeCountry">
+              {totalPatient}/{totalSickBed}
+              <br />
+              (全国) 現在患者数 / 対策病床数
+            </div>
+            {data.map((prefecture, index) => {
+              const pcrTextNum = Number(prefecture["PCR検査陽性者数"]);
+              const sickBedNum =
+                Number(prefecture["入院患者受入確保病床"]) +
+                Number(prefecture["宿泊施設受入可能室数"]);
+              const ratio = Math.floor((pcrTextNum / sickBedNum) * 100);
               return (
                 <div key={index} className="prefecture">
-                  sss
+                  {prefecture["都道府県名"]}
+                  <br />
+                  {ratio + "%"}
+                  <br />
+                  {pcrTextNum.toLocaleString() +
+                    "/" +
+                    sickBedNum.toLocaleString()}
                 </div>
               );
             })}
@@ -120,9 +176,27 @@ export default function Main() {
       <div className="lower">
         <p>
           新型コロナウイルス感染症（国内事例） 現在患者数 / 対策病床数
-          ※軽症者等は自宅療養など、病床を使用しないことがあります（詳細）
+          ※軽症者等は自宅療養など、病床を使用しないことがあります（
+          <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html">
+            詳細
+          </a>
+          ）
         </p>
-        <p>（現在患者数 前日より増加 前日より減少）</p>
+        <p>
+          （現在患者数
+          <img
+            className="up"
+            src="https://www.stopcovid19.jp/img/trendarrow01.svg"
+            alt=""
+          />
+          前日より増加
+          <img
+            className="down"
+            src="https://www.stopcovid19.jp/img/trendarrow03.svg"
+            alt=""
+          />
+          前日より減少）
+        </p>
       </div>
     </div>
   );

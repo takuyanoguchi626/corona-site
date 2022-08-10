@@ -44,11 +44,11 @@ body {
 }
 
 #main .upper .left {
-  width: 45%;
+  width: 47%;
 }
 
 #main .upper .left .patientChart {
-  margin: 13px 0 0 6.5vw;
+  margin: 13px 0 0 7vw;
   width: 37.2vw;
 }
 
@@ -76,19 +76,18 @@ body {
 }
 
 #main .upper .left .patientSentence {
-  margin: 0 0 0 6.5vw;
+  margin: 0 0 0 7vw;
   width: 37.2vw;
   text-align: center;
 }
 
 #main .upper .right {
-  width: 55%;
+  width: 53%;
 }
 
 #main .upper .right .prefectures {
-  margin: 0 10px;
-  padding: 8px;
-  width: 53vw;
+  padding: 8px 0;
+  width: 52vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -102,6 +101,7 @@ body {
   height: 9.3vh;
   color: white;
   margin: 3px;
+  text-align: center;
 }
 
 #main .upper .right .prefectures .prefecture {
@@ -110,9 +110,19 @@ body {
   height: 9.3vh;
   color: white;
   margin: 3px;
+  text-align: center;
 }
 
 #main .lower {
-  background-color: darkcyan;
+  text-align: center;
+}
+
+#main .lower img {
+  width: 1vw;
+}
+
+#main .lower .down {
+  -webkit-transform: scale(1, -1);
+          transform: scale(1, -1);
 }
 /*# sourceMappingURL=index.css.map */

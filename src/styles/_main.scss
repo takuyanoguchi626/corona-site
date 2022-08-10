@@ -2,9 +2,9 @@
   display: flex;
   margin-top: 2px;
   .left {
-    width: 45%;
+    width: 47%;
     .patientChart {
-      margin: 13px 0 0 6.5vw;
+      margin: 13px 0 0 7vw;
       width: 37.2vw;
       .chartTable {
         text-align: center;
@@ -29,17 +29,16 @@
       }
     }
     .patientSentence {
-      margin: 0 0 0 6.5vw;
+      margin: 0 0 0 7vw;
       width: 37.2vw;
       text-align: center;
     }
   }
   .right {
-    width: 55%;
+    width: 53%;
     .prefectures {
-      margin: 0 10px;
-      padding: 8px;
-      width: 53vw;
+      padding: 8px 0;
+      width: 52vw;
       display: flex;
       flex-wrap: wrap;
       .wholeCountry {
@@ -52,5 +51,11 @@
   }
 }
 .lower {
-  background-color: darkcyan;
+  text-align: center;
+  img {
+    width: 1vw;
+  }
+  .down {
+    transform: scale(1, -1);
+  }
 }
