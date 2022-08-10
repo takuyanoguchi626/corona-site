@@ -158,4 +158,12 @@ body {
   height: 14vh;
   margin-left: 2vw;
 }
+
+#prefecturePage .container {
+  width: 44vw;
+  height: 99vh;
+  background-color: aqua;
+  border: solid;
+  text-align: center;
+}
 /*# sourceMappingURL=index.css.map */
