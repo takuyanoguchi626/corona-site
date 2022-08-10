@@ -8,3 +8,9 @@
 }
 
 $headerBackgroundColor: #b52f2f;
+
+@mixin footerImg {
+  width: 30vw;
+  height: 14vh;
+  margin-left: 2vw;
+}
