@@ -11,10 +11,9 @@ import {
   Title,
 } from "chart.js";
 import { Pie, Line } from "react-chartjs-2";
-import faker from "faker";
 import { prefectureContext } from "../providers/PrefectureProvider";
-import axios from "axios";
 import { data } from "../output";
+import { deaths } from "../deaths";
 
 ChartJS.register(
   ArcElement,
@@ -33,11 +32,30 @@ function PrefecuturePage() {
     throw new Error("data がありません。");
   }
 
-  const [deathsData, setDeathsData] = useState([]);
-  const [inpatientData, setInpatientData] = useState([]);
+  const [deathsData, setDeathsData] = useState<number[]>([0]);
+  const [inpatientData, setInpatientData] = useState<(number | undefined)[]>([
+    0,
+  ]);
 
   useEffect(() => {
-    console.log(data);
+    const inpatient = data.map((d) => {
+      const object = Object.keys(d);
+      const value = Object.values(d);
+      for (let i = 0; i < object.length; i++) {
+        if (
+          object[i].indexOf("Hokkaido") != -1 &&
+          object[i].indexOf("Requiring inpatient care") != -1
+        ) {
+          return Number(value[i]);
+        }
+      }
+    });
+    setInpatientData(() => inpatient);
+    const name = "Hokkaido";
+    const deathsArr = deaths.map((death) => {
+      return Number(death[name]);
+    });
+    setDeathsData(() => deathsArr);
   }, []);
 
   const options = {
@@ -72,29 +90,23 @@ function PrefecuturePage() {
     },
   };
 
-  const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-  ];
+  const labels = data.map((data) => {
+    return data.Date;
+  });
 
   const data_line = {
     labels,
     datasets: [
       {
         label: "入院治療を要する者",
-        data: [1, 2, 3, 4, 5, 6, 7],
+        data: inpatientData,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
         yAxisID: "y_right",
       },
       {
         label: "累計死亡者数",
-        data: [7, 6, 5, 4, 3, 2, 1],
+        data: deathsData,
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "rgba(53, 162, 235, 0.5)",
         yAxisID: "y_left",
