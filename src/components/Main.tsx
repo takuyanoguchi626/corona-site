@@ -65,6 +65,7 @@ export default function Main() {
     ndeaths: number;
     isShow: string;
     prefectureName: string;
+    prefectureNameEn: string;
   };
 
   const prefecture = useContext(prefectureContext);
@@ -83,6 +84,7 @@ export default function Main() {
     prefecture.setSickBedNum(() => prefectureData.sickBedNum);
     prefecture.setNpatients(() => prefectureData.npatients);
     prefecture.setPrefectureName(() => prefectureData.prefectureName);
+    prefecture.setPrefectureNameEn(() => prefectureData.prefectureNameEn);
   };
 
   useEffect(() => {
@@ -219,6 +221,7 @@ export default function Main() {
                       ndeaths: ndeaths,
                       isShow: "",
                       prefectureName: prefecture["都道府県名"],
+                      prefectureNameEn: accumulationData["name"],
                     })
                   }
                 >

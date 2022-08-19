@@ -32,7 +32,7 @@ function PrefecuturePage() {
     throw new Error("data がありません。");
   }
 
-  const [deathsData, setDeathsData] = useState<number[]>([0]);
+  const [deathsData, setDeathsData] = useState<(number | undefined)[]>([0]);
   const [inpatientData, setInpatientData] = useState<(number | undefined)[]>([
     0,
   ]);
@@ -43,7 +43,7 @@ function PrefecuturePage() {
       const value = Object.values(d);
       for (let i = 0; i < object.length; i++) {
         if (
-          object[i].indexOf("Hokkaido") != -1 &&
+          object[i].indexOf(prefectureData.prefectureNameEn) != -1 &&
           object[i].indexOf("Requiring inpatient care") != -1
         ) {
           return Number(value[i]);
@@ -51,12 +51,18 @@ function PrefecuturePage() {
       }
     });
     setInpatientData(() => inpatient);
-    const name = "Hokkaido";
+    const name = prefectureData.prefectureNameEn;
     const deathsArr = deaths.map((death) => {
-      return Number(death[name]);
+      const object = Object.keys(death);
+      const value = Object.values(death);
+      for (let i = 0; i < object.length; i++) {
+        if (object[i].indexOf(prefectureData.prefectureNameEn) != -1) {
+          return Number(value[i]);
+        }
+      }
     });
     setDeathsData(() => deathsArr);
-  }, []);
+  }, [prefectureData.prefectureNameEn]);
 
   const options = {
     responsive: true,
@@ -124,7 +130,7 @@ function PrefecuturePage() {
         label: "# of Votes",
         data: [
           prefectureData.ncurrentpatients,
-          remainingDed < 0 ? 0 : remainingDed,
+          remainingDed < 0 ? -1 : remainingDed,
         ],
         backgroundColor: ["rgba(255, 99, 132)", "rgba(54, 162, 235)"],
         borderColor: ["rgba(255, 99, 132)", "rgba(54, 162, 235)"],

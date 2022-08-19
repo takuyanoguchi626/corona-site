@@ -15,6 +15,8 @@ type prefectureType = {
   setIsShow: React.Dispatch<React.SetStateAction<string>>;
   prefectureName: string;
   setPrefectureName: React.Dispatch<React.SetStateAction<string>>;
+  prefectureNameEn: string;
+  setPrefectureNameEn: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const prefectureContext = createContext<prefectureType | null>(null);
@@ -33,8 +35,10 @@ export function PrefectureProvider(props: { children: any }) {
   const [sickBedNum, setSickBedNum] = useState(10);
   //表示するかのcss
   const [isShow, setIsShow] = useState("none");
-  //都道府県名
+  //都道府県名(jp)
   const [prefectureName, setPrefectureName] = useState("都道府県名");
+  //都道府県名(en)
+  const [prefectureNameEn, setPrefectureNameEn] = useState("todofuken");
 
   return (
     <prefectureContext.Provider
@@ -53,6 +57,8 @@ export function PrefectureProvider(props: { children: any }) {
         setIsShow,
         prefectureName,
         setPrefectureName,
+        prefectureNameEn,
+        setPrefectureNameEn,
       }}
     >
       {children}
