@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -13,6 +13,8 @@ import {
 import { Pie, Line } from "react-chartjs-2";
 import faker from "faker";
 import { prefectureContext } from "../providers/PrefectureProvider";
+import axios from "axios";
+import { data } from "../output";
 
 ChartJS.register(
   ArcElement,
@@ -30,6 +32,13 @@ function PrefecuturePage() {
   if (!prefectureData) {
     throw new Error("data がありません。");
   }
+
+  const [deathsData, setDeathsData] = useState([]);
+  const [inpatientData, setInpatientData] = useState([]);
+
+  useEffect(() => {
+    console.log(data);
+  }, []);
 
   const options = {
     responsive: true,
