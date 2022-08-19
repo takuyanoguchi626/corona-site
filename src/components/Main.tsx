@@ -1,9 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { prefectureContext } from "../providers/PrefectureProvider";
 
 export default function Main() {
-  //都道府県別データ
-  const [data, setData] = useState([]);
+  //都道府県別の詳細データ
+  const [areaDetailData, setAreaDetailData] = useState([]);
+  //都道府県別の累積データ
+  const [areaData, setAreaData] = useState([]);
   //全国患者数合計
   const [totalPatient, setTotalPatient] = useState(0);
   //全国対策病床合計
@@ -16,7 +19,6 @@ export default function Main() {
   const [exits, setExits] = useState(0);
   //累計PCR陽性者数
   const [patients, setPatients] = useState(0);
-  //
 
   /**
    * 都道府県別のコロナのデータを取得する.
@@ -25,20 +27,14 @@ export default function Main() {
     const res = await axios.get(
       "https://www.stopcovid19.jp/data/covid19japan_beds/latest.json"
     );
-    setData(() => res.data);
-    let totalPatientData = 0;
+    setAreaDetailData(() => res.data);
     let totalSickBedData = 0;
     for (const prefecture of res.data) {
-      totalPatientData += Number(prefecture["PCR検査陽性者数"]);
       totalSickBedData +=
         Number(prefecture["入院患者受入確保病床"]) +
         Number(prefecture["宿泊施設受入可能室数"]);
     }
-    setTotalPatient(() => totalPatientData);
     setTotalSickBed(() => totalSickBedData);
-    setPatientRatio(() =>
-      Math.floor((totalPatientData / totalSickBedData) * 100)
-    );
   };
   /**
    * 全国のコロナのデータを取得する.
@@ -47,15 +43,52 @@ export default function Main() {
     const res = await axios.get(
       "https://www.stopcovid19.jp/data/covid19japan.json"
     );
+    setAreaData(() => res.data.area);
     setDeaths(() => res.data.ndeaths);
     setExits(() => res.data.nexits);
     setPatients(() => res.data.npatients);
+    setTotalPatient(() => res.data.ncurrentpatients);
+    setPatientRatio(() =>
+      Math.floor((Number(totalPatient) / Number(totalSickBed)) * 100)
+    );
+  };
+
+  // const getPrefectureDetail = async (prefectureName: string) => {
+  //   const res = await axios.get("");
+  // };
+
+  type prefectureData = {
+    ncurrentpatients: number;
+    sickBedNum: number;
+    npatients: number;
+    nexits: number;
+    ndeaths: number;
+    isShow: string;
+    prefectureName: string;
+  };
+
+  const prefecture = useContext(prefectureContext);
+  if (!prefecture) {
+    throw new Error("dataがありません。");
+  }
+
+  /**
+   * 都道府県の詳細ページを表示する.
+   */
+  const showPrefecturePage = (prefectureData: prefectureData) => {
+    prefecture.setIsShow(() => prefectureData.isShow);
+    prefecture.setNcurrentpatients(() => prefectureData.ncurrentpatients);
+    prefecture.setNdeaths(() => prefectureData.ndeaths);
+    prefecture.setNexits(() => prefectureData.nexits);
+    prefecture.setSickBedNum(() => prefectureData.sickBedNum);
+    prefecture.setNpatients(() => prefectureData.npatients);
+    prefecture.setPrefectureName(() => prefectureData.prefectureName);
   };
 
   useEffect(() => {
     coronaData_prefectures();
     coronaData_wholeCountry();
-  }, []);
+  }, [totalSickBed]);
 
   return (
     <div id="main">
@@ -152,19 +185,48 @@ export default function Main() {
               <br />
               (全国) 現在患者数 / 対策病床数
             </div>
-            {data.map((prefecture, index) => {
-              const pcrTextNum = Number(prefecture["PCR検査陽性者数"]);
+            {areaDetailData.map((prefecture, index) => {
+              //都道府県の累積データ
+              const accumulationData = areaData.filter(
+                (area) => area["name_jp"] === prefecture["都道府県名"]
+              )[0];
+              //累積陽性者数
+              const npatients = accumulationData["npatients"];
+              //累積退院者数
+              const nexits = accumulationData["nexits"];
+              //累積死者数
+              const ndeaths = accumulationData["ndeaths"];
+              //都道府県の現在の患者数
+              const ncurrentpatients = Number(
+                accumulationData["ncurrentpatients"]
+              );
+              //都道府県の対策病床数
               const sickBedNum =
                 Number(prefecture["入院患者受入確保病床"]) +
                 Number(prefecture["宿泊施設受入可能室数"]);
-              const ratio = Math.floor((pcrTextNum / sickBedNum) * 100);
+              //都道府県の対策病床数に対する現在の患者数の割合
+              const ratio = Math.floor((ncurrentpatients / sickBedNum) * 100);
               return (
-                <div key={index} className="prefecture">
+                <div
+                  key={index}
+                  className="prefecture"
+                  onClick={() =>
+                    showPrefecturePage({
+                      ncurrentpatients: ncurrentpatients,
+                      sickBedNum: sickBedNum,
+                      npatients: npatients,
+                      nexits: nexits,
+                      ndeaths: ndeaths,
+                      isShow: "",
+                      prefectureName: prefecture["都道府県名"],
+                    })
+                  }
+                >
                   {prefecture["都道府県名"]}
                   <br />
                   {ratio + "%"}
                   <br />
-                  {pcrTextNum.toLocaleString() +
+                  {ncurrentpatients.toLocaleString() +
                     "/" +
                     sickBedNum.toLocaleString()}
                 </div>
