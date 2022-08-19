@@ -1,7 +1,25 @@
 .container {
   width: 44vw;
   height: 99vh;
-  background-color: aqua;
+  background-color: white;
   border: solid;
   text-align: center;
+  overflow-y: scroll;
+  .title {
+    font-size: 1.65vw;
+    margin: 8px 0;
+  }
+  .chart {
+    width: 20vw;
+    margin: 0 auto;
+  }
+  .numberOfPeople {
+    font-size: 1.3vw;
+    margin: 6px 0;
+  }
+  .source {
+    font-size: 0.9vw;
+    width: 40vw;
+    margin: 0 auto;
+  }
 }

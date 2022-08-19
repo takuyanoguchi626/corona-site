@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { prefectureContext } from "../providers/PrefectureProvider";
 
 export default function Main() {
   //都道府県別の詳細データ
@@ -56,25 +57,38 @@ export default function Main() {
   //   const res = await axios.get("");
   // };
 
-  type prefecutureData = {
+  type prefectureData = {
     ncurrentpatients: number;
     sickBedNum: number;
     npatients: number;
     nexits: number;
     ndeaths: number;
+    isShow: string;
+    prefectureName: string;
   };
+
+  const prefecture = useContext(prefectureContext);
+  if (!prefecture) {
+    throw new Error("dataがありません。");
+  }
 
   /**
    * 都道府県の詳細ページを表示する.
    */
-  const showPrefecturePage = (prefecutureData: prefecutureData) => {
-    // await getPrefectureDetail(prefectureName);
+  const showPrefecturePage = (prefectureData: prefectureData) => {
+    prefecture.setIsShow(() => prefectureData.isShow);
+    prefecture.setNcurrentpatients(() => prefectureData.ncurrentpatients);
+    prefecture.setNdeaths(() => prefectureData.ndeaths);
+    prefecture.setNexits(() => prefectureData.nexits);
+    prefecture.setSickBedNum(() => prefectureData.sickBedNum);
+    prefecture.setNpatients(() => prefectureData.npatients);
+    prefecture.setPrefectureName(() => prefectureData.prefectureName);
   };
 
   useEffect(() => {
     coronaData_prefectures();
     coronaData_wholeCountry();
-  }, []);
+  }, [totalSickBed]);
 
   return (
     <div id="main">
@@ -203,6 +217,8 @@ export default function Main() {
                       npatients: npatients,
                       nexits: nexits,
                       ndeaths: ndeaths,
+                      isShow: "",
+                      prefectureName: prefecture["都道府県名"],
                     })
                   }
                 >

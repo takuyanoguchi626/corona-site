@@ -4,11 +4,13 @@ export default function Footer() {
   return (
     <div id="footer">
       <div className="container">
-        <img
-          src="https://www.stopcovid19.jp/img/notestopcovid19-banner.png"
-          alt=""
-          className="coronaExpertImg"
-        />
+        <a href="https://note.stopcovid19.jp/n/n0b078f2b3dce">
+          <img
+            src="https://www.stopcovid19.jp/img/notestopcovid19-banner.png"
+            alt=""
+            className="coronaExpertImg"
+          />
+        </a>
         <div className="healthImg">
           <div>
             <a href="https://tk3-805-12365.vw.sakura.ne.jp:3443/fine">
