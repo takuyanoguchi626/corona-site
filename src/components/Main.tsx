@@ -53,10 +53,6 @@ export default function Main() {
     );
   };
 
-  // const getPrefectureDetail = async (prefectureName: string) => {
-  //   const res = await axios.get("");
-  // };
-
   type prefectureData = {
     ncurrentpatients: number;
     sickBedNum: number;
@@ -69,9 +65,6 @@ export default function Main() {
   };
 
   const prefecture = useContext(prefectureContext);
-  // if (!prefecture) {
-  //   throw new Error("dataがありません。");
-  // }
 
   /**
    * 都道府県の詳細ページを表示する.
@@ -183,9 +176,10 @@ export default function Main() {
         <div className="right">
           <div className="prefectures">
             <div className="wholeCountry">
-              {totalPatient}/{totalSickBed}
-              <br />
-              (全国) 現在患者数 / 対策病床数
+              <span className="number">
+                {totalPatient}/{totalSickBed}
+              </span>
+              <span className="string">(全国) 現在患者数 / 対策病床数</span>
             </div>
             {areaDetailData.map((prefecture, index) => {
               //都道府県の累積データ

@@ -71,6 +71,10 @@ body {
   background-color: #b52f2f;
 }
 
+#main .upper .left .patientChart .chartTable .number td {
+  font-size: 2.8vw;
+}
+
 #main .upper .left .patientChart .chartTable .chartSentence td {
   font-size: 0.8vw;
 }
@@ -102,6 +106,24 @@ body {
   color: white;
   margin: 3px;
   text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#main .upper .right .prefectures .wholeCountry .number {
+  font-size: 1.3vw;
+}
+
+#main .upper .right .prefectures .wholeCountry .string {
+  font-size: 0.6vw;
 }
 
 #main .upper .right .prefectures .prefecture {
