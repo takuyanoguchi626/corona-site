@@ -65,24 +65,26 @@ export default function Main() {
     ndeaths: number;
     isShow: string;
     prefectureName: string;
+    prefectureNameEn: string;
   };
 
   const prefecture = useContext(prefectureContext);
-  if (!prefecture) {
-    throw new Error("dataがありません。");
-  }
+  // if (!prefecture) {
+  //   throw new Error("dataがありません。");
+  // }
 
   /**
    * 都道府県の詳細ページを表示する.
    */
   const showPrefecturePage = (prefectureData: prefectureData) => {
-    prefecture.setIsShow(() => prefectureData.isShow);
-    prefecture.setNcurrentpatients(() => prefectureData.ncurrentpatients);
-    prefecture.setNdeaths(() => prefectureData.ndeaths);
-    prefecture.setNexits(() => prefectureData.nexits);
-    prefecture.setSickBedNum(() => prefectureData.sickBedNum);
-    prefecture.setNpatients(() => prefectureData.npatients);
-    prefecture.setPrefectureName(() => prefectureData.prefectureName);
+    prefecture?.setIsShow(() => prefectureData.isShow);
+    prefecture?.setNcurrentpatients(() => prefectureData.ncurrentpatients);
+    prefecture?.setNdeaths(() => prefectureData.ndeaths);
+    prefecture?.setNexits(() => prefectureData.nexits);
+    prefecture?.setSickBedNum(() => prefectureData.sickBedNum);
+    prefecture?.setNpatients(() => prefectureData.npatients);
+    prefecture?.setPrefectureName(() => prefectureData.prefectureName);
+    prefecture?.setPrefectureNameEn(() => prefectureData.prefectureNameEn);
   };
 
   useEffect(() => {
@@ -208,6 +210,7 @@ export default function Main() {
               const ratio = Math.floor((ncurrentpatients / sickBedNum) * 100);
               return (
                 <div
+                  data-testid={prefecture["都道府県名"]}
                   key={index}
                   className="prefecture"
                   onClick={() =>
@@ -219,6 +222,7 @@ export default function Main() {
                       ndeaths: ndeaths,
                       isShow: "",
                       prefectureName: prefecture["都道府県名"],
+                      prefectureNameEn: accumulationData["name"],
                     })
                   }
                 >

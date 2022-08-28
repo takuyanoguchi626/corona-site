@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Main from "../components/Main";
 import Footer from "../components/Footer";
 import PrefecuturePage from "../components/PrefecuturePage";
+import MainGraph from "../components/MainGraph";
 
 export default function TopPage() {
   return (
@@ -11,6 +12,7 @@ export default function TopPage() {
       <Header></Header>
       <Main></Main>
       <Footer></Footer>
+      <MainGraph></MainGraph>
     </>
   );
 }
