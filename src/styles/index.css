@@ -135,6 +135,15 @@ body {
   text-align: center;
 }
 
+#main .upper .right .prefectures .prefecture img {
+  width: 1vw;
+}
+
+#main .upper .right .prefectures .prefecture .down {
+  -webkit-transform: scale(1, -1);
+          transform: scale(1, -1);
+}
+
 #main .lower {
   text-align: center;
 }

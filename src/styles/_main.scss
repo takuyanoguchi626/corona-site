@@ -58,6 +58,12 @@
       }
       .prefecture {
         @include prefecture(6.4vw);
+        img {
+          width: 1vw;
+        }
+        .down {
+          transform: scale(1, -1);
+        }
       }
     }
   }

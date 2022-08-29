@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import { data } from "../output";
 import { prefectureContext } from "../providers/PrefectureProvider";
 
 export default function Main() {
@@ -84,6 +85,56 @@ export default function Main() {
     coronaData_prefectures();
     coronaData_wholeCountry();
   }, [totalSickBed]);
+
+  const differenceFromPreviousDay = (prefectureName: string) => {
+    const inpatient = data.map((d) => {
+      const object = Object.keys(d);
+      const value = Object.values(d);
+      for (let i = 0; i < object.length; i++) {
+        if (
+          object[i].indexOf(prefectureName) != -1 &&
+          object[i].indexOf("Requiring inpatient care") != -1
+        ) {
+          return Number(value[i]);
+        }
+      }
+    });
+
+    let inpatient2 = inpatient.splice(inpatient.length - 2, 2);
+    if (inpatient2[0] != undefined && inpatient2[1] != undefined) {
+      if (inpatient2[0] > inpatient2[1]) {
+        return {
+          className: "down",
+          src: "https://www.stopcovid19.jp/img/trendarrow03.svg",
+        };
+      } else {
+        return {
+          className: "up",
+          src: "https://www.stopcovid19.jp/img/trendarrow01.svg",
+        };
+      }
+    }
+  };
+
+  const iconUp = () => {
+    return (
+      <img
+        className="up"
+        src="https://www.stopcovid19.jp/img/trendarrow01.svg"
+        alt=""
+      />
+    );
+  };
+
+  const iconDown = () => {
+    return (
+      <img
+        className="down"
+        src="https://www.stopcovid19.jp/img/trendarrow03.svg"
+        alt=""
+      />
+    );
+  };
 
   return (
     <div id="main">
@@ -202,6 +253,16 @@ export default function Main() {
                 Number(prefecture["宿泊施設受入可能室数"]);
               //都道府県の対策病床数に対する現在の患者数の割合
               const ratio = Math.floor((ncurrentpatients / sickBedNum) * 100);
+              let icon = {
+                className: "up",
+                src: "aaa",
+              };
+              const iconFlag = differenceFromPreviousDay(
+                accumulationData["name"]
+              );
+              if (iconFlag != undefined) {
+                icon = iconFlag;
+              }
               return (
                 <div
                   data-testid={prefecture["都道府県名"]}
@@ -221,6 +282,7 @@ export default function Main() {
                   }
                 >
                   {prefecture["都道府県名"]}
+                  <img className={icon.className} src={icon.src} alt="" />
                   <br />
                   {ratio + "%"}
                   <br />
@@ -244,18 +306,8 @@ export default function Main() {
         </p>
         <p>
           （現在患者数
-          <img
-            className="up"
-            src="https://www.stopcovid19.jp/img/trendarrow01.svg"
-            alt=""
-          />
-          前日より増加
-          <img
-            className="down"
-            src="https://www.stopcovid19.jp/img/trendarrow03.svg"
-            alt=""
-          />
-          前日より減少）
+          {iconUp()}: 前日より増加
+          {iconDown()}: 前日より減少）
         </p>
       </div>
     </div>
