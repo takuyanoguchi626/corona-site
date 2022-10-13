@@ -4,11 +4,11 @@
 }
 
 body {
-  font-family: "Franklin Gothic";
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
 }
 
 #header .container {
-  background-color: #b52f2f;
+  background-color: #ad232f;
   color: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -20,18 +20,18 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 20vh;
+  height: 20.3vh;
 }
 
 #header .container h1 {
-  font-size: 60px;
-  font-weight: lighter;
-  margin: 12px 0 20px 0;
-  letter-spacing: 1px;
+  font-size: 57.5px;
+  font-weight: bold;
+  margin: 17.5px 0 18px 0;
+  letter-spacing: 0.2px;
 }
 
 #header .container h2 {
-  font-size: 20px;
+  font-size: 21.7px;
   font-weight: normal;
   margin: 5px 0;
 }
@@ -55,20 +55,20 @@ body {
 #main .upper .left .patientChart .chartTable {
   text-align: center;
   border-collapse: collapse;
-  border: 0.2rem solid #b52f2f;
+  border: 0.2rem solid #ad232f;
 }
 
 #main .upper .left .patientChart .chartTable td {
   padding: 1px;
   font-size: 1.2vw;
   width: 20vw;
-  border: 0.2rem solid #b52f2f;
+  border: 0.2rem solid #ad232f;
 }
 
 #main .upper .left .patientChart .chartTable .number {
   color: white;
   height: 8.5vh;
-  background-color: #b52f2f;
+  background-color: #ad232f;
 }
 
 #main .upper .left .patientChart .chartTable .number td {
